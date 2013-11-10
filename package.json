@@ -1,0 +1,50 @@
+{
+  "name": "grunt-browserify-bower",
+  "description": "Browserify bower libraries into a separate bundle",
+  "version": "0.1.0",
+  "homepage": "https://github.com/tobiash/grunt-browserify-bower",
+  "author": {
+    "name": "Tobias Habermann",
+    "email": "thabermann@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tobiash/grunt-browserify-bower.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tobiash/grunt-browserify-bower/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/tobiash/grunt-browserify-bower/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt": "~0.4.1",
+    "nodeunit": "~0.8.2"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "keywords": [
+    "gruntplugin"
+  ],
+  "dependencies": {
+    "bower-resolve": "0.0.3",
+    "bower": "~1.2.7",
+    "browserify": "~2.35.1",
+    "browserify-shim": "~2.0.8",
+    "extend": "~1.2.1"
+  }
+}
