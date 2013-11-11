@@ -76,6 +76,7 @@ module.exports = function(grunt) {
         });
 
         grunt.file.mkdir(path.dirname(file));
+        grunt.config.set('browserify.options.external', fromBower.concat(fromExtra));
         bundle()
           .pipe(fs.createWriteStream(file))
           .on('finish', function () {
