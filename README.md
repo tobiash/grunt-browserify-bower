@@ -92,18 +92,6 @@ You can also add entries for libraries not installed via bower. These
 are passed to `browserify-shim` directly and you need to specify a
 `path` in this case.
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
-
-A string value that is used to do something with whatever.
-
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
-
 ### Usage Examples
 ```js
 grunt.initConfig({
