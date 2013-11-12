@@ -37,7 +37,60 @@ grunt.initConfig({
 })
 ```
 
+The task browserifies all installed bower packages and optionally uses
+`browserify-shim` to shim non CommonJS libraries. All these libraries
+are browserified into a separate 'libs' bundle for your web app. The
+task automatically sets `grunt-browserify`'s `options.external` setting.
+
+#### Why should you use this?
+
+* Your main browserify task runs a lot faster when it doesn't have to
+repackage large library files like JQuery and AngularJS each time. This
+makes your development cycle a lot more responsive.
+* Libraries are a lot easier to integrate in your project. For most
+libraries it's as simple as `bower install foo` and `require(foo)` in
+your application.
+
 ### Options
+
+#### options.file
+Type: `String`
+Default value: `'./.tmp/scripts/lib.js'`
+
+Path of the destination file.
+
+#### options.forceResolve
+Type: `Object`
+Default value: `{}`
+
+This object allows to adjust the path to the `main` file of a bower
+package, in case the one specified in the package's `bower.json` is
+faulty. The path should be relative to the package directory.
+
+Example:
+```js
+forceResolve: {
+  'wysihtml5': 'dist/wysihtml5-0.3.0.min.js'
+}
+```
+
+#### options.shim
+Type: `Object`
+Default value: `{}`
+
+This object allows adjusting the options passed to `browserify-shim`.
+
+You can add entries for every library installed via bower. For these,
+you should omit the `path` setting, as this is automatically determined
+via `bower-resolve` or the `forceResolve` option.
+
+Note that the `exports` setting defaults to `null` and needs to be
+adjusted if you want to shim a non CommonJS library that exports to
+the `window` object.
+
+You can also add entries for libraries not installed via bower. These
+are passed to `browserify-shim` directly and you need to specify a
+`path` in this case.
 
 #### options.separator
 Type: `String`
@@ -52,17 +105,35 @@ Default value: `'.'`
 A string value that is used to do something else with whatever else.
 
 ### Usage Examples
+```js
+grunt.initConfig({
+  browserifyBower: {
+    options: {
+      file: './tmp/lib.js',
+      // fix broken bower `main` entries
+      forceResolve: {
+        'wysihtml5': 'dist/wysihtml5-0.3.0.min.js'
+      },
+      shim: {
+        'wysihtml5': {
+          exports: 'wysihtml5'
+        }
+      }
+    }
+  }
+})
+```
 
 #### Default Options
-
 
 ```js
 grunt.initConfig({
   browserify_bower: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+    options: {
+      file: './.tmp/scripts/lib.js',
+      forceResolve: {},
+      shim: {}
+    }
   },
 })
 ```
