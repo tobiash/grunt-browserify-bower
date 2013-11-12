@@ -19,7 +19,7 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-browserify-bower');
 ```
 
-## The "browserify_bower" task
+## The "browserifyBower" task
 
 ### Overview
 In your project's Gruntfile, add a section named `browserifyBower` to the data object passed into `grunt.initConfig()`.
@@ -116,7 +116,7 @@ grunt.initConfig({
 
 ```js
 grunt.initConfig({
-  browserify_bower: {
+  browserifyBower: {
     options: {
       file: './.tmp/scripts/lib.js',
       forceResolve: {},
