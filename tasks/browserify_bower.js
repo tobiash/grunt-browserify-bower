@@ -58,6 +58,7 @@ module.exports = function(grunt) {
     }
 
     function bundle() {
+      grunt.log.debug('%j', shims);
       b = shim(b, shims);
       return b.bundle();
     }
