@@ -34,7 +34,8 @@ module.exports = function(grunt) {
       fromExtra = [];
 
     var done = this.async(),
-        b = browserify();
+        b = browserify(),
+        flags = this.flags;
 
 
     function brResolve(name) {
@@ -78,19 +79,25 @@ module.exports = function(grunt) {
 
         grunt.file.mkdir(path.dirname(file));
         grunt.config.set('browserify.options.external', fromBower.concat(fromExtra));
+
+        if (flags.nowrite) {
+          done();
+          return;
+        }
+
         bundle()
           .pipe(fs.createWriteStream(file))
           .on('finish', function () {
             grunt.log.ok('Wrote %d bower and %d external dependencies to %s', fromBower.length, fromExtra.length, file);
-            done();          
+            done();
           })
           .on('error', function (err) {
             grunt.log.writeln('Error bundling bower components', err.stack);
-            done(err);           
+            done(err);
           });
       }).on('error', function (err) {
         grunt.log.writeln('Error listing bower components', err);
-        done(err);        
+        done(err);
       });
 
     });

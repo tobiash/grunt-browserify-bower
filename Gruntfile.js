@@ -42,6 +42,8 @@ module.exports = function(grunt) {
           }
         }
       },
+      default: {
+      },
       custom_options: {
       },
     },

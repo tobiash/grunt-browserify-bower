@@ -112,6 +112,26 @@ grunt.initConfig({
 })
 ```
 
+### Usage with `grunt-watch` or `grunt-este-watch`
+
+If you want to rebundle your application every time one of your `.js`
+files changes, but not rebuild your library bundle, you can run the task
+with the `nowrite` flag. This sets the `browserify.exports` setting
+according to your installed bower libs, but suppresses the rebundling of
+your library bundle.
+
+Example (with `grunt-watch`):
+```js
+grunt.initConfig({
+  watch: {
+      browserify: {
+        files: 'app/scripts/**/*.js',
+        tasks: ['browserifyBower:libs:nowrite', 'browserify:app']
+      }
+  }
+})
+```
+
 #### Default Options
 
 ```js
