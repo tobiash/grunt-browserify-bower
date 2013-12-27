@@ -46,9 +46,13 @@ module.exports = function(grunt) {
     }
 
     function processBowerDependency(name) {
-      grunt.log.debug('Resolved %s to %s', name, brResolve(name));
-      var depPath = brResolve(name),
-          depShim = {
+      var depPath = brResolve(name);
+      grunt.log.debug('Resolved %s to %s', name, depPath);
+      if (depPath.indexOf('.js', depPath.length - 3) === -1) {
+        grunt.log.debug('Did not resolve to .js, ignoring %s', name);
+        return;
+      }
+      var depShim = {
             exports: null,
             path: depPath
           };
