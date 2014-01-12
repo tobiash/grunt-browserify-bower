@@ -52,6 +52,10 @@ module.exports = function(grunt) {
         grunt.log.debug('Did not resolve to .js, ignoring %s', name);
         return;
       }
+      if (!fs.existsSync(depPath)) {
+        grunt.log.warn('Path %s for package %s not found, ignoring', depPath, name);
+        return;
+      }
       var depShim = {
             exports: null,
             path: depPath
