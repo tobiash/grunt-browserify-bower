@@ -26,7 +26,7 @@ module.exports = function(grunt) {
       forceResolve: {},
       shim: {},
       debug: false,
-      insertGlobals: false,
+      insertGlobals: true,
       detectGlobals: false,
       standalone: "",
       insertGlobalVars: false
