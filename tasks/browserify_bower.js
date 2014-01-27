@@ -24,7 +24,12 @@ module.exports = function(grunt) {
     var options = this.options({
       file: './.tmp/scripts/lib.js',
       forceResolve: {},
-      shim: {}
+      shim: {},
+      debug: false,
+      insertGlobals: true,
+      detectGlobals: false,
+      standalone: "",
+      insertGlobalVars: false
     });
 
     var file = options.file,
@@ -69,7 +74,7 @@ module.exports = function(grunt) {
     function bundle() {
       grunt.log.debug('%j', shims);
       b = shim(b, shims);
-      return b.bundle();
+      return b.bundle(options);
     }
 
     bowerResolve.init(function () {
