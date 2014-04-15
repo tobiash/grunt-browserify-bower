@@ -85,13 +85,6 @@ forceResolve: {
 }
 ```
 
-Example:
-```js
-forceResolve: {
-  'wysihtml5': 'dist/wysihtml5-0.3.0.min.js'
-}
-```
-
 #### options.shim
 Type: `Object`
 Default value: `{}`
