@@ -29,7 +29,8 @@ module.exports = function(grunt) {
       insertGlobals: true,
       detectGlobals: false,
       standalone: "",
-      insertGlobalVars: false
+      insertGlobalVars: false,
+      checkVersions: true
     });
 
     var file = options.file,
@@ -77,6 +78,7 @@ module.exports = function(grunt) {
       return b.bundle(options);
     }
 
+    bowerResolve.offline = !options.checkVersions;
     bowerResolve.init(function () {
 
       bower.commands.list().on('end', function (info) {

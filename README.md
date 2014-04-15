@@ -59,6 +59,17 @@ Default value: `'./.tmp/scripts/lib.js'`
 
 Path of the destination file.
 
+#### options.checkVersions
+Type: `Boolean`
+Default value: `true`
+
+Simple switch to enable/disable version checking of installed bower components.
+You might want to disable this to make whole process faster, especially with
+bigger number of components.
+
+**Note:** If you are running on Windows and you don't have Git client available
+system wide, you should disable this, otherwise whole process might just fail.
+
 #### options.forceResolve
 Type: `Object`
 Default value: `{}`
@@ -66,6 +77,13 @@ Default value: `{}`
 This object allows to adjust the path to the `main` file of a bower
 package, in case the one specified in the package's `bower.json` is
 faulty. The path should be relative to the package directory.
+
+Example:
+```js
+forceResolve: {
+  'wysihtml5': 'dist/wysihtml5-0.3.0.min.js'
+}
+```
 
 Example:
 ```js
