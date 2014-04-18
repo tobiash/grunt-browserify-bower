@@ -81,7 +81,8 @@ module.exports = function(grunt) {
     bowerResolve.offline = !options.checkVersions;
     bowerResolve.init(function () {
 
-      bower.commands.list().on('end', function (info) {
+      listCfg = {offline: !options.checkVersions}
+      bower.commands.list(null, listCfg).on('end', function (info) {
         Object.keys(info.dependencies).forEach(processBowerDependency);
 
         // Shim other dependencies (outside bower)
