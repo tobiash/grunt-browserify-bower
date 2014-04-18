@@ -94,6 +94,7 @@ module.exports = function(grunt) {
         grunt.config.set('browserify.options.external', fromBower.concat(fromExtra));
 
         if (flags.nowrite) {
+          grunt.event.emit('browserifyBower:finish');
           done();
           return;
         }
@@ -102,6 +103,7 @@ module.exports = function(grunt) {
           .pipe(fs.createWriteStream(file))
           .on('finish', function () {
             grunt.log.ok('Wrote %d bower and %d external dependencies to %s', fromBower.length, fromExtra.length, file);
+            grunt.event.emit('browserifyBower:finish');
             done();
           })
           .on('error', function (err) {
