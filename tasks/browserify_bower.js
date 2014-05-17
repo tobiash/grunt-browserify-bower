@@ -25,6 +25,7 @@ module.exports = function(grunt) {
       file: './.tmp/scripts/lib.js',
       forceResolve: {},
       shim: {},
+      transform: [],
       debug: false,
       insertGlobals: true,
       detectGlobals: false,
@@ -74,6 +75,13 @@ module.exports = function(grunt) {
     function bundle() {
       grunt.log.debug('%j', shims);
       b = shim(b, shims);
+
+      if (options.transform) {
+        options.transform.forEach(function (transform) {
+          b.transform(transform);
+        });
+      }
+
       return b.bundle(options);
     }
 

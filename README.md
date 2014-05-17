@@ -92,6 +92,13 @@ You can also add entries for libraries not installed via bower. These
 are passed to `browserify-shim` directly and you need to specify a
 `path` in this case.
 
+#### options.transform
+Type: `[String || Function]`
+Default value: `[]`
+
+Specifies a pipeline of functions (or modules) through which the browserified bundle will be run. See the [browserify docs themselves](https://github.com/substack/node-browserify#btransformopts-tr) for more on how to use transforms.
+
+
 ### Usage Examples
 ```js
 grunt.initConfig({
@@ -140,7 +147,8 @@ grunt.initConfig({
     options: {
       file: './.tmp/scripts/lib.js',
       forceResolve: {},
-      shim: {}
+      shim: {},
+      transform: []
     }
   },
 })
