@@ -14,7 +14,8 @@ var path = require('path'),
     browserify = require('browserify'),
     shim = require('browserify-shim'),
     bowerResolve = require('bower-resolve'),
-    bower = require('bower');
+    bower = require('bower'),
+    _ = require('underscore');
 
 module.exports = function(grunt) {
   // Please see the Grunt documentation for more information regarding task
@@ -30,7 +31,8 @@ module.exports = function(grunt) {
       insertGlobals: true,
       detectGlobals: false,
       standalone: "",
-      insertGlobalVars: false
+      insertGlobalVars: false,
+      includeDevDependencies: true
     });
 
     var file = options.file,
@@ -88,7 +90,11 @@ module.exports = function(grunt) {
     bowerResolve.init(function () {
 
       bower.commands.list().on('end', function (info) {
-        Object.keys(info.dependencies).forEach(processBowerDependency);
+        var bowerDependencies = options.includeDevDependencies ?
+          info.dependencies :
+          _.pick(info.dependencies, Object.keys(info.pkgMeta.dependencies));
+        
+        Object.keys(bowerDependencies).forEach(processBowerDependency);
 
         // Shim other dependencies (outside bower)
         Object.keys(options.shim).forEach(function (name) {
