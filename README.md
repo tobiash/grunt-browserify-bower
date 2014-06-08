@@ -98,7 +98,7 @@ Default value: `[]`
 
 Specifies a pipeline of functions (or modules) through which the browserified bundle will be run. See the [browserify docs themselves](https://github.com/substack/node-browserify#btransformopts-tr) for more on how to use transforms.
 
-### options.includeDevDependencies
+#### options.includeDevDependencies
 Type: `Boolean`
 Default value: `true`
 
