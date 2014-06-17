@@ -30,7 +30,8 @@ module.exports = function(grunt) {
       insertGlobals: true,
       detectGlobals: false,
       standalone: "",
-      insertGlobalVars: false
+      insertGlobalVars: false,
+      checkVersions: true
     });
 
     var file = options.file,
@@ -85,9 +86,11 @@ module.exports = function(grunt) {
       return b.bundle(options);
     }
 
+    bowerResolve.offline = !options.checkVersions;
     bowerResolve.init(function () {
 
-      bower.commands.list().on('end', function (info) {
+      var listCfg = {offline: !options.checkVersions};
+      bower.commands.list(null, listCfg).on('end', function (info) {
         Object.keys(info.dependencies).forEach(processBowerDependency);
 
         // Shim other dependencies (outside bower)
